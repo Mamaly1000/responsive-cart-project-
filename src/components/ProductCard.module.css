@@ -1,0 +1,217 @@
+/* 
+level 5 = #0e103d
+level 4 = #69306d
+level 3 = #a5668b
+level 2 = #d3bcc0
+level 1 = #f2d7ee
+*/
+.ProductCard_container {
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #d3bcc0;
+  column-gap: 4%;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 1px rgb(22, 21, 21);
+  transition: box-shadow 0.1s linear;
+}
+.ProductCard_container:hover {
+  box-shadow: 0 0 10px transparent;
+}
+/* image styling */
+.ProductCard_img_container {
+  width: 100%;
+  height: 75%;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+}
+.ProductCard_img_container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+/* detail styling */
+.ProductCard_detail {
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  bottom: -22%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 4%;
+  justify-content: center;
+  background: #f2d7ee;
+  border-radius: 10px;
+  padding-inline: 10px;
+  transition: bottom 0.12s linear;
+}
+.ProductCard_container:hover .ProductCard_detail {
+  bottom: 0%;
+}
+/* title */
+.ProductCard_title {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  color: #f2d7ee;
+  background: #69306d;
+}
+/* price & rate */
+.ProductCard_price,
+.ProductCard_rating {
+  width: 48%;
+  height: 20%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #69306d;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray inset;
+}
+/* price */
+/* .ProductCard_price {
+} */
+/* rate */
+/* .ProductCard_rating {
+} */
+/* product detail button */
+.ProductCard_detail_button {
+  width: 48%;
+  height: 20%;
+  border-radius: 10px;
+  border-width: 0;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+  color: #f2f3f2;
+  background: #0e103d;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ProductCard_detail_button::before {
+  content: "";
+  width: 0%;
+  position: absolute;
+  bottom: -2.5%;
+  left: 5%;
+  height: 10%;
+  background: #a5668b;
+  transition: width 0.09s linear;
+  border-radius: 10px;
+  z-index: 1;
+}
+.ProductCard_detail_button:hover::before {
+  width: 90%;
+}
+/* product button container */
+.ProductCard_buttons_container {
+  width: 48%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ProductCard_buttons_container button {
+  min-width: 30%;
+  height: 100%;
+  border-radius: 10px;
+  border-width: 0;
+  font-weight: 700;
+  cursor: pointer;
+  color: #f2f3f2;
+  background: #0e103d;
+  position: relative;
+  z-index: 0;
+}
+.ProductCard_buttons_container button::before {
+  content: "";
+  width: 0%;
+  position: absolute;
+  bottom: -2.5%;
+  left: 5%;
+  height: 10%;
+  background: #a5668b;
+  transition: width 0.09s linear;
+  border-radius: 10px;
+  z-index: 1;
+}
+.ProductCard_buttons_container button:hover::before {
+  width: 90%;
+}
+/* styling increase button */
+.ProductCard_remove_button {
+  transition: all 0.2s linear;
+}
+/* styling buying button */
+.ProductCard_buying_button_short {
+  height: 20%;
+  background: #f3f3f2;
+  border-width: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: min-width 0.12s linear;
+}
+.ProductCard_buying_button_long {
+  min-width: 100% !important;
+  height: 20%;
+  background: #f3f3f2;
+  border-width: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: min-width 0.12s linear;
+  float: right !important;
+}
+
+.ProductCard_selected_item {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #f2f3f2;
+  font-weight: 700;
+  color: #69306d;
+  box-shadow: 0 0 10px gray inset;
+  transition: all 0.12s linear;
+}
+@media screen and (max-width: 500px) {
+  .ProductCard_detail {
+    bottom: 0%;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 2%;
+    flex-wrap: nowrap;
+  }
+  .ProductCard_buttons_container,
+  .ProductCard_detail_button,
+  .ProductCard_price,
+  .ProductCard_rating {
+    width: 100%;
+  }
+  .ProductCard_title {
+    font-size: 0.9rem;
+  }
+  .ProductCard_img_container {
+    height: 50%;
+  }
+}

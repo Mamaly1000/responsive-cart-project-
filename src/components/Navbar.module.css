@@ -1,0 +1,62 @@
+/* 
+level 5 = #0e103d
+level 4 = #69306d
+level 3 = #a5668b
+level 2 = #d3bcc0
+level 1 = #f2d7ee
+*/
+.nav_container {
+  width: 100%;
+  height: 10vh;
+  background: #f2d7ee;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2%;
+  font-size: 2rem;
+  z-index: 100;
+}
+.nav_container a {
+  text-decoration: none;
+  padding: 0.6%;
+  background: #0e103d;
+  color: #f2d7ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  z-index: 0;
+}
+.nav_container a::before {
+  content: "";
+  width: 0%;
+  position: absolute;
+  bottom: -2.5%;
+  left: 5%;
+  height: 10%;
+  background: #a5668b;
+  transition: width 0.09s linear;
+  border-radius: 10px;
+  z-index: 1;
+}
+.nav_container a:hover::before {
+  width: 90%;
+}
+.counter {
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: #a5668b;
+  color: #f2d7ee;
+  position: absolute;
+  top: 0;
+  right: -5%;
+  z-index: 2;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

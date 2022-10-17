@@ -1,0 +1,221 @@
+/* 
+level 5 = #0e103d
+level 4 = #69306d
+level 3 = #a5668b
+level 2 = #d3bcc0
+level 1 = #f2d7ee
+*/
+.ProductDetail_container {
+  margin-top: 5vh;
+  width: 100%;
+  height: 95vh;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+}
+/* styling sides */
+.ProductDetail_leftSide,
+.ProductDetail_rightSide {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  text-align: center;
+  row-gap: 10px;
+}
+/* title */
+.ProductDetail_title {
+  width: 100%;
+  height: 10%;
+  padding: 10px;
+  background: #f2d7ee;
+  color: #69306d;
+  height: auto;
+  padding: 10px;
+  font-size: 2rem;
+  border-radius: 10px;
+}
+/* description */
+.ProductDetail_description {
+  width: 100%;
+  height: 40%;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f2d7ee;
+  color: #69306d;
+  font-size: 1rem;
+  overflow: auto;
+}
+/* additoinal styling */
+.ProductDetail_additionalData {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f2d7ee;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 10px;
+  text-align: center;
+  color: #69306d;
+}
+.ProductDetail_additionalData span {
+  background: #f3f3f3;
+  box-shadow: 0 0 10px gray inset;
+  border-radius: 10px;
+  padding: 10px;
+}
+/* styling button container */
+.ProductDetail_buttons_container {
+  width: 100%;
+  height: 15%;
+  border-radius: 10px;
+  background: #f2d7ee;
+  color: #f3f3f3;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+}
+.ProductDetail_buttons_container button {
+  position: relative;
+  z-index: 1;
+}
+.ProductDetail_selected_item {
+  width: 30%;
+  height: 100%;
+  padding: 10px;
+  color: #69306d;
+  background: #f3f3f3;
+  box-shadow: 0 0 10px gray inset;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.ProductDetail_remove_button {
+  width: 30%;
+  height: 100%;
+  background: #0e103d;
+  color: #f2d7ee;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.ProductDetail_buying_button_short {
+  width: 30%;
+  height: 100%;
+  background: #0e103d;
+  color: #f2d7ee;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: width 0.12s linear;
+}
+.ProductDetail_buying_button_long {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0;
+  background: #0e103d;
+  color: #f2d7ee;
+  transition: width 0.12s linear;
+}
+.ProductDetail_buttons_container button::before {
+  content: "";
+  width: 0%;
+  position: absolute;
+  bottom: -2.5%;
+  left: 5%;
+  height: 10%;
+  background: #a5668b;
+  transition: width 0.09s linear;
+  border-radius: 10px;
+  z-index: 1;
+}
+.ProductDetail_buttons_container button:hover::before {
+  width: 90%;
+}
+/* styling product detail link */
+.ProductDetail_store_link {
+  text-decoration: none;
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f2d7ee;
+  background: #0e103d;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+.ProductDetail_store_link::before {
+  content: "";
+  width: 0%;
+  position: absolute;
+  bottom: -2.5%;
+  left: 5%;
+  height: 10%;
+  background: #a5668b;
+  transition: width 0.09s linear;
+  border-radius: 10px;
+  z-index: 1;
+}
+.ProductDetail_store_link:hover::before {
+  width: 90%;
+}
+/* product image */
+.ProductDetail_rightSide img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .ProductDetail_container {
+    flex-direction: column;
+    height: auto;
+    overflow: initial;
+    justify-content: center;
+    row-gap: 20px;
+    padding: 20px;
+    margin-top: 10vh ;
+  }
+  .ProductDetail_rightSide {
+    order: 0;
+    width: 100%;
+    height: 400px;
+    padding: 0;
+  }
+  .ProductDetail_leftSide {
+    order: 1;
+    width: 100%;
+    height: 450px;
+    padding: 0;
+  }
+  .ProductDetail_title {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .ProductDetail_description {
+    font-size: 1rem;
+  }
+  .ProductDetail_additionalData span {
+    padding: 5px;
+    width: 45%;
+    font-size: 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
