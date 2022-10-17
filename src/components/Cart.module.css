@@ -61,6 +61,7 @@ tbody tr {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 5px;
 }
 tbody tr td {
   height: 100%;
