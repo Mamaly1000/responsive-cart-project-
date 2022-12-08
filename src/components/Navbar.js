@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-// context
-import { cartContext } from "../Context/CartContextProvider";
+// redux
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  
-  const { Cart } = useContext(cartContext);
+  const state = useSelector( root => root.cartState);
   return (
     <nav className={styles.nav_container}>
       <Link to="/store">
@@ -19,7 +18,7 @@ const Navbar = () => {
 
       <Link to="/cart">
         <i className="fa fa-shopping-cart"></i>
-        <span className={styles.counter}>{Cart.overalItems}</span>
+        <span className={styles.counter}>{state.overalItems}</span>
       </Link>
     </nav>
   );

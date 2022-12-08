@@ -1,78 +1,87 @@
-import React, { useContext, useEffect, useState } from "react";
-// api
-import { ProductDetailApi } from "../Services/API";
+import React, { useEffect, useState } from "react";
+// axios
+import axios from "axios";
 // react-router-dom
 import { Link, useParams } from "react-router-dom";
 // styling
 import styles from "./ProductDetail.module.css";
 // functions
 import { gettingIndex, verifyingproduct } from "../functions/functions";
-// context
-import { cartContext } from "../Context/CartContextProvider";
+import { ProductDetailApi } from "../Services/API";
+// react-redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProduct,
+  removeProduct,
+  increaseProduct,
+  decreaseProduct,
+} from "./../redux/cart/cartAction";
 
 const ProductDetail = () => {
+  const [productdetail, setproductDetail] = useState([]);
+  const param = useParams();
+  const ID = param.id;
+  const Cart = useSelector((root) => root.cartState);
+  const dispatch = useDispatch();
 
-  const { Cart, setCart } = useContext(cartContext);
-  const [product, setproduct] = useState({});
-
-  const history = useParams();
-  const ID = history.id;
-
+  const fetchapi = async () => {
+    const { data } = await axios.get(ProductDetailApi(ID));
+    setproductDetail(data);
+  };
   useEffect(() => {
-    const fetchApi = async () => {
-      setproduct(await ProductDetailApi(ID));
-    };
-    fetchApi();
-  }, [ID]);
+    fetchapi();
+  }, []);
 
   return (
     <section className={styles.ProductDetail_container}>
       <div className={styles.ProductDetail_leftSide}>
-        <h1 className={styles.ProductDetail_title} >{product.title}</h1>
-        <p className={styles.ProductDetail_description} >{product.description}</p>
+        <h1 className={styles.ProductDetail_title}>{productdetail.title}</h1>
+        <p className={styles.ProductDetail_description}>
+          {productdetail.description}
+        </p>
 
         <div className={styles.ProductDetail_additionalData}>
           <span className={styles.ProductDetail_category}>
-            category : {product.category}
+            category : {productdetail.category}
           </span>
 
           <span className={styles.ProductDetail_price}>
-            price : {product.price}
+            price : {productdetail.price}
           </span>
         </div>
 
         <div className={styles.ProductDetail_buttons_container}>
           <button
             className={
-              verifyingproduct(Cart, product.id)
+              verifyingproduct(Cart, productdetail.id)
                 ? styles.ProductDetail_buying_button_short
                 : styles.ProductDetail_buying_button_long
             }
             onClick={
-              verifyingproduct(Cart, product.id)
-                ? () => setCart({ type: "INCREASE", payload: product })
-                : () => setCart({ type: "ADD-ITEM", payload: product })
+              verifyingproduct(Cart, productdetail.id)
+                ? () => dispatch(increaseProduct(productdetail))
+                : () => dispatch(addProduct(productdetail))
             }
           >
-            {verifyingproduct(Cart, product.id) ? "+" : "buy now"}
+            {verifyingproduct(Cart, productdetail.id) ? "+" : "buy now"}
           </button>
 
-          {verifyingproduct(Cart, product.id) && (
+          {verifyingproduct(Cart, productdetail.id) && (
             <span className={styles.ProductDetail_selected_item}>
-              {gettingIndex(Cart, product.id)}
+              {gettingIndex(Cart, productdetail.id)}
             </span>
           )}
 
-          {verifyingproduct(Cart, product.id) && (
+          {verifyingproduct(Cart, productdetail.id) && (
             <button
               className={styles.ProductDetail_remove_button}
               onClick={
-                gettingIndex(Cart, product.id) > 1
-                  ? () => setCart({ type: "DECREASE", payload: product })
-                  : () => setCart({ type: "REMOVE-ITEM", payload: product })
+                gettingIndex(Cart, productdetail.id) > 1
+                  ? () => dispatch(decreaseProduct(productdetail))
+                  : () => dispatch(removeProduct(productdetail))
               }
             >
-              {gettingIndex(Cart, product.id) > 1 ? (
+              {gettingIndex(Cart, productdetail.id) > 1 ? (
                 "-"
               ) : (
                 <i className="fa fa-trash"></i>
@@ -81,11 +90,13 @@ const ProductDetail = () => {
           )}
         </div>
 
-        <Link className={styles.ProductDetail_store_link} to="/store">back to store</Link>
+        <Link className={styles.ProductDetail_store_link} to="/store">
+          back to store
+        </Link>
       </div>
 
       <div className={styles.ProductDetail_rightSide}>
-        <img src={product.image} alt={product.title} />
+        <img src={productdetail.image} alt={productdetail.title} />
       </div>
     </section>
   );

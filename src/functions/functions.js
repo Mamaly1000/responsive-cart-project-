@@ -21,7 +21,7 @@ export const gettingIndex = (state, id) => {
 export const calcualtor = (state) => {
   let overalPrice = state
     .reduce((acc, current) => {
-      return acc + current.price * current.quantity;
+      return acc + (current.price * current.quantity);
     }, 0)
     .toFixed(2);
   let overalItems = state.reduce((acc, current) => {

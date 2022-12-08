@@ -193,7 +193,6 @@ button::before {
   height: 200px;
   background: #f2d7ee;
   color: #69306d;
-  border-radius: 10px;
 }
 .Cart_detail div {
   width: 100%;
@@ -202,6 +201,7 @@ button::before {
   align-items: center;
   justify-content: center;
   column-gap: 2.5%;
+  border-radius: 10px;
   flex-wrap: wrap;
 }
 .Cart_detail h2 {
@@ -268,7 +268,7 @@ button::before {
 @media screen and (max-width: 500px) {
   .Cart_container {
     flex-direction: column;
-    padding:15vh 10px;
+    padding: 15vh 10px;
     min-height: 50vh;
     max-height: 1150vh;
   }
@@ -277,7 +277,7 @@ button::before {
     min-height: 200px;
     max-height: auto;
   }
-  .Cart_container table tbody{
+  .Cart_container table tbody {
     min-height: 200px;
     overflow: hidden;
   }

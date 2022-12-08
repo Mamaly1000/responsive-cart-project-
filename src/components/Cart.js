@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 // styling
 import styles from "./Cart.module.css";
 // components
 import CartCard from "./CartCard";
-// context
-import { cartContext } from "../Context/CartContextProvider";
+// react router dom
 import { Link } from "react-router-dom";
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import { checkout, clear } from "./../redux/cart/cartAction";
 
 const Cart = () => {
-  const { Cart, setCart } = useContext(cartContext);
+  const Cart = useSelector((root) => root.cartState);
+  const dispatch = useDispatch();
   return (
     <section className={styles.Cart_container}>
       <table>
@@ -19,8 +22,8 @@ const Cart = () => {
           <th className={styles.cart_pic}>image</th>
         </thead>
         <tbody>
-          {Cart.seletedItems.map((item) => (
-            <CartCard key={item.id} product={item} />
+          {Cart.seletedItems.map((item, index) => (
+            <CartCard key={index} product={item} />
           ))}
           {Cart.seletedItems.length === 0 && (
             <div className={styles.Cart_message}>
@@ -39,10 +42,8 @@ const Cart = () => {
             <h2>
               overall price : <span>{Cart.overalPrice}</span>
             </h2>
-            <button onClick={() => setCart({ type: "CLEAR" })}>clear</button>
-            <button onClick={() => setCart({ type: "CHECKOUT" })}>
-              checkout
-            </button>
+            <button onClick={() => dispatch(clear())}>clear</button>
+            <button onClick={() => dispatch(checkout())}>checkout</button>
           </div>
         )}
 

@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 // react router dom
 import { Link } from "react-router-dom";
-// context
-import { cartContext } from "../Context/CartContextProvider";
 // functions
 import { gettingIndex, titlelengthHandler } from "../functions/functions";
 // styling
 import styles from "./Cart.module.css";
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increaseProduct,
+  decreaseProduct,
+  removeProduct,
+} from "../redux/cart/cartAction";
 
 const CartCard = ({ product }) => {
-  const { Cart, setCart } = useContext(cartContext);
+  const Cart = useSelector((root) => root.cartState);
+  const dispatch = useDispatch();
+
   return (
     <tr>
       <td className={styles.cart_name}>
@@ -19,7 +26,7 @@ const CartCard = ({ product }) => {
       </td>
       <td className={styles.cart_price}>{product.price} $</td>
       <td className={styles.Cart_quantity}>
-        <button onClick={() => setCart({ type: "INCREASE", payload: product })}>
+        <button onClick={() => dispatch(increaseProduct(product))}>
           +
         </button>
 
@@ -28,8 +35,8 @@ const CartCard = ({ product }) => {
         <button
           onClick={
             gettingIndex(Cart, product.id) > 1
-              ? () => setCart({ type: "DECREASE", payload: product })
-              : () => setCart({ type: "REMOVE-ITEM", payload: product })
+              ? () => dispatch(decreaseProduct(product))
+              : () => dispatch(removeProduct(product))
           }
         >
           {gettingIndex(Cart, product.id) > 1 ? (

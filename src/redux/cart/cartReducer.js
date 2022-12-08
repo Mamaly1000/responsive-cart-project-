@@ -1,14 +1,13 @@
-import React, { createContext, useReducer } from "react";
-// function
-import { calcualtor } from "./../functions/functions";
+import { calcualtor } from "../../functions/functions";
 
 const initialcart = {
   seletedItems: [],
+  overalItems: 10,
   overalPrice: 0,
-  overalItems: 0,
   checkout: false,
 };
-const reducer = (state, action) => {
+
+const Cartreducer = (state=initialcart, action) => {
   switch (action.type) {
     case "ADD-ITEM":
       if (!state.seletedItems.find((item) => item.id === action.payload.id)) {
@@ -65,22 +64,9 @@ const reducer = (state, action) => {
       return {
         seletedItems: [],
         overalPrice: 0,
-        overalItens: 0,
+        overalItems: 0,
         checkout: false,
       };
   }
 };
-
-export const cartContext = createContext();
-
-const CartContextProvider = (props) => {
-  const [Cart, setCart] = useReducer(reducer, initialcart);
-
-  return (
-    <cartContext.Provider value={{ Cart, setCart }}>
-      {props.children}
-    </cartContext.Provider>
-  );
-};
-
-export default CartContextProvider;
+export default Cartreducer
