@@ -29,7 +29,7 @@ const ProductDetail = () => {
     setproductDetail(data);
   };
   useEffect(() => {
-    fetchapi();
+    fetchapi(); // eslint-disable-next-line
   }, []);
 
   return (

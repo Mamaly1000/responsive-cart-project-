@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 // redux
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const state = useSelector( root => root.cartState);
+  const state = useSelector((root) => root.cartState);
   return (
     <nav className={styles.nav_container}>
       <Link to="/store">

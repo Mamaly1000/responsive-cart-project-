@@ -14,7 +14,7 @@ const Store = () => {
 
   useEffect(() => {
     !productState.products.length && dispatch(fetchProductAPI());
-  }, []);
+  }, [productState.products, dispatch]);
 
   return (
     <div className={styles.store_container}>

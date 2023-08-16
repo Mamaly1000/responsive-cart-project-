@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 // styling
 import styles from "./ProductCard.module.css";
 // functions
